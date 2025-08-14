@@ -4,11 +4,17 @@ import net.bearster.learningmod.LearningMod;
 import net.bearster.learningmod.block.ModBlocks;
 import net.bearster.learningmod.item.ModCreativeModTabs;
 import net.bearster.learningmod.item.ModItems;
+import net.bearster.learningmod.trim.ModTrimPatterns;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.armortrim.TrimPattern;
+import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.data.LanguageProvider;
+
+import java.util.Arrays;
 
 public class ModLanguageProvider extends LanguageProvider {
     public ModLanguageProvider(PackOutput output) {
@@ -17,34 +23,51 @@ public class ModLanguageProvider extends LanguageProvider {
 
     @Override
     protected void addTranslations() {
-        add(ModItems.BLACK_OPAL.get(), "Black Opal");
-        add(ModItems.RAW_BLACK_OPAL.get(), "Raw Black Opal");
+        basicTranslation(ModItems.BLACK_OPAL.get());
+        basicTranslation(ModItems.RAW_BLACK_OPAL.get());
 
-        add(ModItems.CHAINSAW.get(), "Chainsaw");
+        basicTranslation(ModItems.CHAINSAW.get());
 
-        add(ModItems.TOMATO.get(), "Tomato");
+        basicTranslation(ModItems.TOMATO.get());
 
-        add(ModItems.FROSTFIRE_ICE.get(), "Frostfire Ice");
+        basicTranslation(ModItems.FROSTFIRE_ICE.get());
 
-        add(ModBlocks.BLACK_OPAL_BLOCK.get(), "Black Opal Block");
-        add(ModBlocks.RAW_BLACK_OPAL_BLOCK.get(), "Raw Black Opal Block");
+        basicTranslation(ModItems.BLACK_OPAL_SWORD.get());
+        basicTranslation(ModItems.BLACK_OPAL_PICKAXE.get());
+        basicTranslation(ModItems.BLACK_OPAL_SHOVEL.get());
+        basicTranslation(ModItems.BLACK_OPAL_AXE.get());
+        basicTranslation(ModItems.BLACK_OPAL_HOE.get());
 
-        add(ModBlocks.BLACK_OPAL_ORE.get(), "Black Opal Ore");
-        add(ModBlocks.BLACK_OPAL_DEEPSLATE_ORE.get(), "Black Opal Deepslate Ore");
-        add(ModBlocks.BLACK_OPAL_END_ORE.get(), "Black Opal End Ore");
-        add(ModBlocks.BLACK_OPAL_NETHER_ORE.get(), "Black Opal Nether Ore");
+        basicTranslation(ModItems.BLACK_OPAL_PAXEL.get());
+        basicTranslation(ModItems.BLACK_OPAL_HAMMER.get());
 
-        add(ModBlocks.MAGIC_BLOCK.get(), "Magic Block");
+        basicTranslation(ModItems.BLACK_OPAL_HELMET.get());
+        basicTranslation(ModItems.BLACK_OPAL_CHESTPLATE.get());
+        basicTranslation(ModItems.BLACK_OPAL_LEGGINGS.get());
+        basicTranslation(ModItems.BLACK_OPAL_BOOTS.get());
+        basicTranslation(ModItems.BLACK_OPAL_HORSE_ARMOR.get());
 
-        add(ModBlocks.BLACK_OPAL_STAIRS.get(),"Black Opal Stairs");
-        add(ModBlocks.BLACK_OPAL_SLAB.get(), "Black Opal Slab");
-        add(ModBlocks.BLACK_OPAL_PRESSURE_PLATE.get(),"Black Opal Pressure Plate");
-        add(ModBlocks.BLACK_OPAL_BUTTON.get(), "Black Opal Button");
-        add(ModBlocks.BLACK_OPAL_FENCE.get(), "Black Opal Fence");
-        add(ModBlocks.BLACK_OPAL_FENCE_GATE.get(),"Black Opal Fence Gate");
-        add(ModBlocks.BLACK_OPAL_WALL.get(), "Black Opal Wall");
-        add(ModBlocks.BLACK_OPAL_DOOR.get(),"Black Opal Door");
-        add(ModBlocks.BLACK_OPAL_TRAPDOOR.get(), "Black Opal Trapdoor");
+        basicTranslation(ModBlocks.BLACK_OPAL_BLOCK.get());
+        basicTranslation(ModBlocks.RAW_BLACK_OPAL_BLOCK.get());
+
+        basicTranslation(ModBlocks.BLACK_OPAL_ORE.get());
+        basicTranslation(ModBlocks.BLACK_OPAL_DEEPSLATE_ORE.get());
+        basicTranslation(ModBlocks.BLACK_OPAL_END_ORE.get());
+        basicTranslation(ModBlocks.BLACK_OPAL_NETHER_ORE.get());
+
+        basicTranslation(ModBlocks.MAGIC_BLOCK.get());
+
+        basicTranslation(ModBlocks.BLACK_OPAL_STAIRS.get());
+        basicTranslation(ModBlocks.BLACK_OPAL_SLAB.get());
+        basicTranslation(ModBlocks.BLACK_OPAL_PRESSURE_PLATE.get());
+        basicTranslation(ModBlocks.BLACK_OPAL_BUTTON.get());
+        basicTranslation(ModBlocks.BLACK_OPAL_FENCE.get());
+        basicTranslation(ModBlocks.BLACK_OPAL_FENCE_GATE.get());
+        basicTranslation(ModBlocks.BLACK_OPAL_WALL.get());
+        basicTranslation(ModBlocks.BLACK_OPAL_DOOR.get());
+        basicTranslation(ModBlocks.BLACK_OPAL_TRAPDOOR.get());
+
+        add(ModItems.KAUPEN_SMITHING_TEMPLATE.get(), "Kaupen Trim Template");
 
         addCreativeTabType(ModCreativeModTabs.BLACK_OPAL_ITEMS_TAB.get(), "Black Opal Items");
         addCreativeTabType(ModCreativeModTabs.BLACK_OPAL_BLOCKS_TAB.get(), "Black Opal Blocks");
@@ -54,7 +77,49 @@ public class ModLanguageProvider extends LanguageProvider {
         addTooltipType("chainsaw.tooltip.2","§oChainsaw go vroom!§r");
         addTooltipType("magic_block.tooltip.1","This Block is §9MAGICAL§r");
         addTooltipType("tomato.1","Tomato; Tomato");
+        addTrimPatternType("kaupen","Kaupen Armor Trim");
+        addTrimMaterialType("black_opal","Black Opal Material");
 
+    }
+
+    public void basicTranslation(Item item) {
+        String name = item.getDescriptionId().replace('_',' ');
+        String[] names = name.split("\\.");
+        name = names[2];
+        String[] parts = name.split("\\s");
+        for (int i = 0; i < parts.length; i++) {
+            parts[i] = parts[i].substring(0, 1).toUpperCase() + parts[i].substring(1);
+        }
+        name = "";
+        for (int i = 0; i < parts.length; i++) {
+            if (i < parts.length - 1) {
+                name = name + parts[i] + " ";
+            } else {
+                name = name + parts[i];
+            }
+        }
+
+        add(item, name);
+    }
+
+    public void basicTranslation(Block block) {
+        String name = block.getDescriptionId().replace('_',' ');
+        String[] names = name.split("\\.");
+        name = names[2];
+        String[] parts = name.split("\\s");
+        for (int i = 0; i < parts.length; i++) {
+            parts[i] = parts[i].substring(0, 1).toUpperCase() + parts[i].substring(1);
+        }
+        name = "";
+        for (int i = 0; i < parts.length; i++) {
+            if (i < parts.length - 1) {
+                name = name + parts[i] + " ";
+            } else {
+                name = name + parts[i];
+            }
+        }
+
+        add(block, name);
     }
 
     public void addCreativeTabType(CreativeModeTab creativeModeTab, String name) {
@@ -97,5 +162,13 @@ public class ModLanguageProvider extends LanguageProvider {
 
     public void addTooltipType(String keyName, String translatedName) {
         add("tooltip."+LearningMod.MOD_ID+"."+keyName, translatedName);
+    }
+
+    public void addTrimPatternType(String keyName, String translatedName) {
+        add("trim_pattern."+LearningMod.MOD_ID+"."+keyName, translatedName);
+    }
+
+    public void addTrimMaterialType(String keyName, String translatedName) {
+        add("trim_material."+LearningMod.MOD_ID+"."+keyName, translatedName);
     }
 }

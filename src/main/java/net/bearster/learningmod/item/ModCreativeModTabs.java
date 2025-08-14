@@ -32,6 +32,23 @@ public class ModCreativeModTabs {
                         output.accept(ModItems.TOMATO);
                         output.accept(ModItems.FROSTFIRE_ICE);
 
+                        output.accept(ModItems.BLACK_OPAL_SWORD.get());
+                        output.accept(ModItems.BLACK_OPAL_PICKAXE.get());
+                        output.accept(ModItems.BLACK_OPAL_SHOVEL.get());
+                        output.accept(ModItems.BLACK_OPAL_AXE.get());
+                        output.accept(ModItems.BLACK_OPAL_HOE.get());
+
+                        output.accept(ModItems.BLACK_OPAL_PAXEL.get());
+                        output.accept(ModItems.BLACK_OPAL_HAMMER.get());
+
+                        output.accept(ModItems.BLACK_OPAL_HELMET.get());
+                        output.accept(ModItems.BLACK_OPAL_CHESTPLATE.get());
+                        output.accept(ModItems.BLACK_OPAL_LEGGINGS.get());
+                        output.accept(ModItems.BLACK_OPAL_BOOTS.get());
+
+                        output.accept(ModItems.BLACK_OPAL_HORSE_ARMOR.get());
+                        output.accept(ModItems.KAUPEN_SMITHING_TEMPLATE.get());
+
                     }).build());
 
     public static final Supplier<CreativeModeTab> BLACK_OPAL_BLOCKS_TAB =

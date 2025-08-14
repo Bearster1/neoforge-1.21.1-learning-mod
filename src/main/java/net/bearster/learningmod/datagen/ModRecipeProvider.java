@@ -13,6 +13,8 @@ import net.neoforged.neoforge.common.conditions.IConditionBuilder;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
+import static net.bearster.learningmod.LearningMod.LOC;
+
 public class ModRecipeProvider extends RecipeProvider implements IConditionBuilder {
     public ModRecipeProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
         super(output, registries);
@@ -66,6 +68,8 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_black_opal",has(ModItems.BLACK_OPAL.get())).save(recipeOutput);
         doorBuilder(ModBlocks.BLACK_OPAL_DOOR.get(), Ingredient.of(ModItems.BLACK_OPAL.get())).group("black_opal")
                 .unlockedBy("has_black_opal",has(ModItems.BLACK_OPAL.get())).save(recipeOutput);
+
+        trimSmithing(recipeOutput, ModItems.KAUPEN_SMITHING_TEMPLATE.get(), LOC("kaupen"));
     }
 
     protected static void oreSmelting(RecipeOutput pRecipeOutput, List<ItemLike> pIngredients, RecipeCategory pCategory, ItemLike pResult,

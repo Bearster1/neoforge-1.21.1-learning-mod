@@ -1,6 +1,7 @@
 package net.bearster.learningmod;
 
 import net.bearster.learningmod.block.ModBlocks;
+import net.bearster.learningmod.item.ModArmorMaterials;
 import net.bearster.learningmod.item.ModCreativeModTabs;
 import net.bearster.learningmod.item.ModItems;
 import net.minecraft.resources.ResourceLocation;
@@ -39,6 +40,8 @@ public class LearningMod {
 
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
+
+        ModArmorMaterials.register(modEventBus);
 
 
         ModCreativeModTabs.register(modEventBus);

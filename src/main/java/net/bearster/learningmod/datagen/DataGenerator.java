@@ -1,6 +1,7 @@
 package net.bearster.learningmod.datagen;
 
 import net.bearster.learningmod.LearningMod;
+import net.bearster.learningmod.datagen.registry.ModRegistryProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.loot.LootTableProvider;
@@ -38,5 +39,7 @@ public class DataGenerator {
         generator.addProvider(event.includeClient(), new ModBlockStateProvider(packOutput, existingFileHelper));
 
         generator.addProvider(event.includeClient(), new ModLanguageProvider(packOutput));
+
+        generator.addProvider(event.includeServer(), new ModRegistryProvider(packOutput, lookupProvider));
     }
 }
