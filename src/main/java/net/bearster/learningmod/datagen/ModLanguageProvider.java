@@ -47,6 +47,11 @@ public class ModLanguageProvider extends LanguageProvider {
         basicTranslation(ModItems.BLACK_OPAL_BOOTS.get());
         basicTranslation(ModItems.BLACK_OPAL_HORSE_ARMOR.get());
 
+        basicTranslation(ModItems.DATA_TABLET.get());
+        basicTranslation(ModItems.METAL_DETECTOR.get());
+
+        basicTranslation(ModItems.DIAMOND_BOW.get());
+
         basicTranslation(ModBlocks.BLACK_OPAL_BLOCK.get());
         basicTranslation(ModBlocks.RAW_BLACK_OPAL_BLOCK.get());
 
@@ -67,6 +72,8 @@ public class ModLanguageProvider extends LanguageProvider {
         basicTranslation(ModBlocks.BLACK_OPAL_DOOR.get());
         basicTranslation(ModBlocks.BLACK_OPAL_TRAPDOOR.get());
 
+        basicTranslation(ModBlocks.BLACK_OPAL_LAMP.get());
+
         add(ModItems.KAUPEN_SMITHING_TEMPLATE.get(), "Kaupen Trim Template");
 
         addCreativeTabType(ModCreativeModTabs.BLACK_OPAL_ITEMS_TAB.get(), "Black Opal Items");
@@ -79,6 +86,7 @@ public class ModLanguageProvider extends LanguageProvider {
         addTooltipType("tomato.1","Tomato; Tomato");
         addTrimPatternType("kaupen","Kaupen Armor Trim");
         addTrimMaterialType("black_opal","Black Opal Material");
+        addMessageType("metal_detector.no_valuables","No Valuables Found!");
 
     }
 
@@ -170,5 +178,9 @@ public class ModLanguageProvider extends LanguageProvider {
 
     public void addTrimMaterialType(String keyName, String translatedName) {
         add("trim_material."+LearningMod.MOD_ID+"."+keyName, translatedName);
+    }
+
+    public void addMessageType(String keyName, String translatedName) {
+        add("message."+LearningMod.MOD_ID+"."+keyName, translatedName);
     }
 }

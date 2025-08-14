@@ -1,10 +1,15 @@
 package net.bearster.learningmod;
 
 import net.bearster.learningmod.block.ModBlocks;
+import net.bearster.learningmod.component.ModDataComponentTypes;
 import net.bearster.learningmod.item.ModArmorMaterials;
 import net.bearster.learningmod.item.ModCreativeModTabs;
 import net.bearster.learningmod.item.ModItems;
+import net.bearster.learningmod.util.ModItemProperties;
 import net.minecraft.resources.ResourceLocation;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -42,7 +47,7 @@ public class LearningMod {
         ModBlocks.register(modEventBus);
 
         ModArmorMaterials.register(modEventBus);
-
+        ModDataComponentTypes.register(modEventBus);
 
         ModCreativeModTabs.register(modEventBus);
 
@@ -73,5 +78,13 @@ public class LearningMod {
     public void onServerStarting(ServerStartingEvent event) {
         // Do something when the server starts
         LOGGER.info("HELLO from server starting");
+    }
+
+    @EventBusSubscriber(modid = MOD_ID, value = Dist.CLIENT)
+    public static class ClientModEvents {
+        @SubscribeEvent
+        public static void onClientSetup(FMLClientSetupEvent event) {
+            ModItemProperties.addCustomItemProperties();
+        }
     }
 }

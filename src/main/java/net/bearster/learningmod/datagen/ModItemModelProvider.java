@@ -72,6 +72,9 @@ public class ModItemModelProvider extends ItemModelProvider {
 
         basicItem(ModItems.BLACK_OPAL_HORSE_ARMOR.get());
         basicItem(ModItems.KAUPEN_SMITHING_TEMPLATE.get());
+
+        // basicItem(ModItems.DATA_TABLET.get());
+        basicItem(ModItems.METAL_DETECTOR.get());
     }
 
     private void trimmedArmorItem(DeferredItem<Item> itemDeferredItem) {

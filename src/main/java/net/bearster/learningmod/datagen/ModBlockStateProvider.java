@@ -2,12 +2,16 @@ package net.bearster.learningmod.datagen;
 
 import net.bearster.learningmod.LearningMod;
 import net.bearster.learningmod.block.ModBlocks;
+import net.bearster.learningmod.block.custom.BlackOpalLampBlock;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.level.block.*;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
+import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.registries.DeferredBlock;
+
+import static net.bearster.learningmod.LearningMod.LOC;
 
 public class ModBlockStateProvider extends BlockStateProvider {
     public ModBlockStateProvider(PackOutput output, ExistingFileHelper exFileHelper) {
@@ -44,6 +48,21 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         blockItem(ModBlocks.BLACK_OPAL_TRAPDOOR, "_bottom");
 
+        customLamp();
+    }
+
+    private void customLamp() {
+        getVariantBuilder(ModBlocks.BLACK_OPAL_LAMP.get()).forAllStates(state -> {
+            if(state.getValue(BlackOpalLampBlock.CLICKED)) {
+                return new ConfiguredModel[]{new ConfiguredModel(models().cubeAll("black_opal_lamp_on",
+                        LOC("block/" + "black_opal_lamp_on")))};
+            } else {
+                return new ConfiguredModel[]{new ConfiguredModel(models().cubeAll("black_opal_lamp_off",
+                        LOC("block/" + "black_opal_lamp_off")))};
+            }
+        });
+        simpleBlockItem(ModBlocks.BLACK_OPAL_LAMP.get(), models().cubeAll("black_opal_lamp_on",
+                LOC("block/" + "black_opal_lamp_on")));
     }
 
     private void blockWithItem(DeferredBlock<Block> deferredBlock) {
